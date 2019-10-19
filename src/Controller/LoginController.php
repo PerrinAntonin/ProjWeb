@@ -38,7 +38,7 @@ class LoginController extends AbstractController
         throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
     }
     /**
-     * @Route("/Create", name="CreateAccount")
+     * @Route("/create", name="CreateAccount")
      */
     public function create(Request $request, EntityManagerInterface $em)
     {
