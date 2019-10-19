@@ -1,60 +1,73 @@
 {% extends 'base.html.twig' %}
 
-
 {% block Content %}
+
     {{ form_start(form) }}
-        {{ form_errors(form) }}
+    {{form(form._token) }}
 
-        <div class="cart-table-area section-padding-100">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-lg-8">
-                        <div class="checkout_details_area mt-50 clearfix">
 
+    <div class="cart-table-area section-padding-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <div class="checkout_details_area clearfix">
+
+                        <form  method="post">
                             <div class="cart-title">
-                                <h2>Registration</h2>
+                                <h2>Checkout</h2>
                             </div>
-
-                            <form action="#" method="post">
-                                <div class="row">
-                                    <div class="col-12 mb-3">
-                                        {{ form_widget(form.username) }}
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        {{ form_widget(form.lastname) }}
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        {{ form_widget(form.firstname) }}
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        {{ form_widget(form.password.first) }}
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        {{ form_widget(form.password.second) }}
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        {{ form_widget(form.address) }}
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        {{ form_widget(form.postalcode) }}
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        {{ form_widget(form.city) }}
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        {{ form_widget(form.description) }}
-                                    </div>
+                            {% if form_errors(form.password.first) != null %}
+                                <div class="alert alert-danger">
+                                    <strong>Danger!</strong> {{ form_errors(form.password.first) }}
                                 </div>
-                            </form>
-                        </div>
+                            {% endif %}
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form_widget(form.username) }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form_widget(form.lastname) }}
+                                </div>
+                                <div class="col-12 mb-3">
+                                    {{ form_widget(form.firstname) }}
+                                </div>
+                                <div class="col-6 mb-3">
+                                    {{ form_widget(form.password.first) }}
+                                </div>
+                                <div class="col-6 mb-3">
+                                    {{ form_widget(form.password.second) }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form_widget(form.address) }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form_widget(form.postalcode) }}
+                                </div>
+                                <div class="col-12 mb-3">
+                                    {{ form_widget(form.description) }}
+                                </div>
+
+                            </div>
+                            <div class="cart-btn mt-10">
+                                <button type="submit" class="btn amado-btn w-100">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="cart-summary">
+                        <h5>Address</h5>
+
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="cart-btn mt-100">
-            <button type="submit" class="btn amado-btn w-100">Register</button>
-        </div>
+    </div>
     {{ form_end(form) }}
+</div>
+
+<!-- ##### Main Content Wrapper End ##### -->
 
 
-{% endblock %}
+            {% endblock %}
