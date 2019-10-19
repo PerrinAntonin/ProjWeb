@@ -1370,15 +1370,15 @@ img {
 
 /* :: 10.0 Checkout Area CSS */
 .checkout_details_area form .form-control {
-  height: 60px;
+  height: 70px;
   border: none;
   border-radius: 0;
   background-color: #f5f7fa;
-  padding: 30px;
+  padding: 20px;
   color: #6b6b6b;
   font-size: 14px; }
 .checkout_details_area form textarea.form-control {
-  height: 210px; }
+    height: 210px; }
 .checkout_details_area form .custom-control label {
   font-size: 14px;
   color: #6b6b6b; }
