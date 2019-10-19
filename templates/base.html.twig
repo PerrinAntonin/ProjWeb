@@ -12,7 +12,7 @@
 
         <!-- Favicon  -->
         {% block icon %}
-        <link rel="icon" href="{{ asset('img/core-img/favicon.ico') }}" >
+        <link rel="icon" href="{{ asset('img/core-img/logosanstexte.png') }}" >
         {% endblock %}
 
         <!-- Core Style CSS -->
@@ -52,7 +52,7 @@
             <div class="mobile-nav">
                 <!-- Navbar Brand -->
                 <div class="amado-navbar-brand">
-                    <a href="index.html"><img src="{{ asset('img/core-img/logo.png') }}" alt="logo"></a>
+                    <a href="index.html"><img src="{{ asset('img/core-img/logosanstexte.png') }}" alt="logo"></a>
                 </div>
                 <!-- Navbar Toggler -->
                 <div class="amado-navbar-toggler">
@@ -68,14 +68,14 @@
                 </div>
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="index.html"><img src="{{ asset('img/core-img/logo.png') }}" alt="logo"></a>
+                    <a href="index.html"><img src="{{ asset('img/core-img/logoname.png') }}" alt="logo"></a>
+
                 </div>
                 <!-- Amado Nav -->
                 <nav class="amado-nav">
                     <ul>
                         <li class="active"><a href="index.html">Home</a></li>
                         <li><a href="shop.html">Shop</a></li>
-                        <li><a href="product-details.html">Product</a></li>
                         <li><a href="cart.html">Cart</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
                     </ul>
@@ -143,7 +143,7 @@
                         <div class="single_widget_area">
                             <!-- Logo -->
                             <div class="footer-logo mr-50">
-                                <a href="index.html"><img src="{{ asset('img/core-img/logo2.png') }}" alt="Second logo"></a>
+                                <a href="index.html"><img src="{{ asset('img/core-img/logosanstexte.png') }}" alt="Second logo"></a>
                             </div>
                             <!-- Copywrite Text -->
                             <p class="copywrite">Copyright ©2019 All rights reserved.</br>
@@ -189,15 +189,15 @@
 
         {% block javascripts %}
             <!-- ##### jQuery ##### -->
-            <script src="js/jquery/jquery-2.2.4.min.js"></script>
+            <script src="{{ asset('js/jquery/jquery-2.2.4.min.js') }}"></script>
             <!-- Popper js -->
-            <script src="js/popper.min.js"></script>
+            <script src="{{ asset('js/popper.min.js') }}"></script>
             <!-- Bootstrap js -->
-            <script src="js/bootstrap.min.js"></script>
+            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
             <!-- Plugins js -->
-            <script src="js/plugins.js"></script>
+            <script src="{{ asset('js/plugins.js') }}"></script>
             <!-- Active js -->
-            <script src="js/active.js"></script>
+            <script src="{{ asset('js/active.js') }}"></script>
         {% endblock %}
 
     </body>
