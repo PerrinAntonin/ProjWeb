@@ -22,5 +22,10 @@ class ProductController extends AbstractController
     public function productDetails() {
         return $this->render('productDetails.html.twig', []);
     }
-
+    /**
+     * @Route("/maps",name="maps")
+     **/
+    public function maps() {
+        return $this->render('maps.html.twig', []);
+    }
 }
