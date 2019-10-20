@@ -84,7 +84,20 @@
                 <!-- Button Group -->
                 <div class="amado-btn-group mt-30 mb-100">
                     <a href="#" class="btn amado-btn mb-15">Déposer votre anonce</a>
-                    <a href="#" class="btn amado-btn active">Le Meilleur</a>
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn amado-btn active" data-toggle="modal" data-target="#loginModal" id="openLogin">Login</button>
+                    <button type="button" class="btn">register</button>
+                    {% if error is defined %}
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+
+                        {% if app.user %}
+                            <div class="mb-3">
+                                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
                 </div>
                 <!-- Cart Menu -->
                 <div class="cart-fav-search mb-100">
@@ -188,6 +201,53 @@
             </div>
         </footer>
         {% endblock %}
+        {% block Modal %}
+            <!-- Modal -->
+            <div id="loginModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body" >
+                            <form method="post" id="form-connect">
+
+
+                                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                                <label for="inputUsername" class="sr-only">Username</label>
+
+                                <input type="text"  name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+
+                                <label for="inputPassword" class="sr-only">Password</label>
+                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                                {#
+                                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                    See https://symfony.com/doc/current/security/remember_me.html
+
+                                    <div class="checkbox mb-3">
+                                        <label>
+                                            <input type="checkbox" name="_remember_me"> Remember me
+                                        </label>
+                                    </div>
+                                #}
+
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+
+                            <button class="btn btn-lg btn-primary" form="form-connect"   type="submit" id="closeLogin">Sign in</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {% endblock %}
 
         {% block javascripts %}
             <!-- ##### jQuery ##### -->
@@ -200,6 +260,8 @@
             <script src="{{ asset('js/plugins.js') }}"></script>
             <!-- Active js -->
             <script src="{{ asset('js/active.js') }}"></script>
+            <!-- login js -->
+            <script src="{{ asset('js/login.js') }}"></script>
         {% endblock %}
 
     </body>

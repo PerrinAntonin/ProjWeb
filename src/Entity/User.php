@@ -5,13 +5,20 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Form\FormTypeInterface;
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(
+    * fields={"username"},
+    * errorPath="username",
+    * message="It appears you have already registered with this username."
+ *)
  */
+
 class User implements UserInterface
 {
     /**
@@ -87,6 +94,7 @@ class User implements UserInterface
         $this->products = new ArrayCollection();
         $this->favorites = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {

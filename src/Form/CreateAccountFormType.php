@@ -19,11 +19,16 @@ class CreateAccountFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username' , TextType::class,['attr'=> ['class'=> 'form-control',"placeholder"=>"Username"],])
+            ->add('username' , TextType::class,[
+                'attr'=> ['class'=> 'form-control',"placeholder"=>"Username"],
+                'label' => false,
+
+                ])
 
             ->add('password', RepeatedType::class, [
 
                 'options' => ['attr' => ['class' => 'password-field']],
+                'label' => false,
                 'type' => PasswordType::class,
                     'required' => true,
                     'invalid_message' => 'The password fields must match.',
@@ -33,23 +38,27 @@ class CreateAccountFormType extends AbstractType
                         'attr'=> ['class'=> 'form-control',"placeholder"=>"Repeat MDP"],"label"=>false,],
 
                     ])
-
             ->add('firstname', TextType::class,[
                 'attr'=> ['class'=> 'form-control',"placeholder"=>"Prénom"],
+                'label' => false,
                 'required' => true,])
             ->add('lastname', TextType::class,[
                 'attr'=> ['class'=> 'form-control',"placeholder"=>"Nom"],
+                'label' => false,
                 'required' => true,])
             ->add('address', TextType::class,[
                 'attr'=> ['class'=> 'form-control',"placeholder"=>"Adresse"],
+                'label' => false,
                 'required' => true,])
 
             ->add('postalcode', IntegerType::class,[
                 'attr'=> ['class'=> 'form-control',"placeholder"=>"Code Postal "],
+                'label' => false,
                 'required' => true,] )
 
             ->add('description',TextareaType::class,[
                 'attr' =>['class'=> 'form-control w-100',"placeholder"=>"Leave a description about you", "cols"=>"30", "rows"=>"10"],
+                'label' => false,
                 'required' => false,])
         ;
     }
@@ -58,6 +67,14 @@ class CreateAccountFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            // enable/disable CSRF protection for this form
+            'csrf_protection' => true,
+            // the name of the hidden HTML field that stores the token
+            'csrf_field_name' => '_token',
+            // an arbitrary string used to generate the value of the token
+            // using a different string for each form improves its security
+            'csrf_token_id'   => 'task_item',
+
         ]);
     }
 }

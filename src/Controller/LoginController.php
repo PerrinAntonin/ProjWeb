@@ -6,10 +6,12 @@ use App\Form\CreateAccountFormType;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class LoginController extends AbstractController
 {
@@ -27,7 +29,9 @@ class LoginController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        $data = ['last_username' => $lastUsername, 'error' => $error];
+        return $this->render('login.html.twig', ['last_username' => $lastUsername, 'error' => $error]); // on envoie ensuite le formulaire au template
+        //return new JsonResponse($data) ;
     }
 
     /**
@@ -40,21 +44,27 @@ class LoginController extends AbstractController
     /**
      * @Route("/create", name="CreateAccount")
      */
-    public function create(Request $request, EntityManagerInterface $em)
+    public function create(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {
         $form = $this->createForm(CreateAccountFormType::class);
 
         $form->handleRequest($request); // On récupère le formulaire envoyé dans la requête
 
 
-        //dd("ddd");
         if ($form->isSubmitted() && $form->isValid()) { // on véfifie si le formulaire est envoyé et si il est valide
+
             $article = $form->getData(); // On récupère l'article associé
-            dd($article);
+            $encoded = $encoder->encodePassword($article, $article->getPassword());
+
+            $article->setPassword($encoded);
+            $article->setCreationdate(New \DateTime());
+            $article->setRoles(['ROLE_USER']);
+            $article->setChangedate(New \DateTime());
+
             $em->persist($article); // on le persiste
             $em->flush(); // on save
 
-            return $this->redirectToRoute('app_login'); // Hop redirigé et on sort du controller
+            return $this->redirectToRoute('index'); // Hop redirigé et on sort du controller
         }
         return $this->render('create.html.twig', ['form' => $form->createView()]); // on envoie ensuite le formulaire au template
 

@@ -2,23 +2,28 @@
 
 {% block Content %}
 
-    {{ form_start(form) }}
-    {{form(form._token) }}
-
-
     <div class="cart-table-area section-padding-100">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-lg-8">
                     <div class="checkout_details_area clearfix">
 
-                        <form  method="post">
+                        <form  method="post" id="form-id">
+                            {{ form_start(form) }}
+                            <div class="my-custom-class-for-errors">
+                                {{ form_errors(form) }}
+                            </div>
                             <div class="cart-title">
                                 <h2>Checkout</h2>
                             </div>
                             {% if form_errors(form.password.first) != null %}
                                 <div class="alert alert-danger">
                                     <strong>Danger!</strong> {{ form_errors(form.password.first) }}
+                                </div>
+                            {% endif %}
+                            {% if form_errors(form.username) != null %}
+                                <div class="alert alert-danger">
+                                    <strong>Danger!</strong> {{ form_errors(form.username) }}
                                 </div>
                             {% endif %}
                             <div class="row">
@@ -48,23 +53,23 @@
                                 </div>
 
                             </div>
-                            <div class="cart-btn mt-10">
-                                <button type="submit" class="btn amado-btn w-100">Register</button>
-                            </div>
+                            {{ form_rest(form) }}
+                            {{ form_end(form) }}
                         </form>
                     </div>
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="cart-summary">
                         <h5>Address</h5>
-
-
+                        <div class="cart-btn mt-10">
+                            <button form="form-id" type="submit" class="btn amado-btn w-100">Register</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {{ form_end(form) }}
+
 </div>
 
 <!-- ##### Main Content Wrapper End ##### -->
