@@ -31,7 +31,7 @@ class LoginController extends AbstractController
 
         $data = ['last_username' => $lastUsername, 'error' => $error];
         return $this->render('login.html.twig', ['last_username' => $lastUsername, 'error' => $error]); // on envoie ensuite le formulaire au template
-        //return new JsonResponse($data) ;
+        //return new JsonResponse(['last_username' => $lastUsername, 'error' => $error]) ;
     }
 
     /**

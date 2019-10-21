@@ -11,18 +11,18 @@
     //}
 //};
 
-$('.openLogin').click(function(){
+$('#openLogin').click(function(){
+    console.log("tese");
     $.ajax({
         url:'/login',
-        type:'POST',
+        type:'GET',
         datatType:'json',
         data:{},
         async:true,
-        success:function(data){
-            $error = data.error;
-            $('#inputUsername').val(data.last_username);
+        success:function(response){
+            $('#something').html(response);
+            console.log(response);
 
-            console.log(data);
         }
     })
 });
