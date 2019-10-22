@@ -42,7 +42,7 @@ p {
   font-size: 16px;
   line-height: 1.9;
   font-weight: 400; }
-
+/*
 a {
   -webkit-transition: all 500ms ease 0s;
   transition: all 500ms ease 0s;
@@ -59,6 +59,13 @@ a {
     color: #131212;
     font-weight: 400;
     font-size: 12px; }
+    */
+
+a.register{
+  font-size: 15px;
+
+}
+
 
 ul,
 ol {
@@ -486,6 +493,11 @@ img {
     .main-content-wrapper .header-area .amado-btn-group .amado-btn {
       width: 200px;
       display: block; }
+    .main-content-wrapper .header-area .cart-fav-search i{
+      color: #96999e;
+      margin-right: 10%;
+      font-size: 150%;
+    }
     .main-content-wrapper .header-area .cart-fav-search a {
       display: block;
       text-transform: uppercase;
@@ -738,6 +750,20 @@ img {
       position: relative;
       z-index: 1;
       padding: 30px 20px; }
+      .cart-summary .cart-btn .fa-angle-down{
+        font-size: 24px;
+        animation-name: floating;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        margin-bottom: 15px;
+      }
+@keyframes floating {
+  from { transform: translate(0,  0px); }
+  65%  { transform: translate(0, 10px); }
+  to   { transform: translate(0, -0px); }
+}
+
       .main-content-wrapper .cart-table-area .cart-summary h5 {
         font-size: 18px;
         margin-bottom: 0; }

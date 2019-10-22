@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -22,6 +23,7 @@
         {% endblock %}
 
     </head>
+
     <body>
         <!-- Search Wrapper -->
         {% block SeachBar %}
@@ -47,6 +49,7 @@
 
         <!-- ##### Bar  ##### -->
         {% block LeftBar %}
+
         <div class="main-content-wrapper d-flex clearfix">
 
             <!-- Mobile Nav (max width 767px)-->
@@ -85,33 +88,27 @@
                 <div class="amado-btn-group mt-30 mb-100">
                     <a href="#" class="btn amado-btn mb-15">Déposer votre anonce</a>
                     <!-- Trigger the modal with a button -->
-                    <button type="button" class="btn amado-btn active" data-toggle="modal" data-target="#loginModal" id="openLogin">Login</button>
-
-                    <button type="button" class="btn">register</button>
-                    {% if error is defined %}
-                        {% if error %}
-                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                        {% endif %}
+                    {% if not app.user %}
+                        <a type="button" class="btn amado-btn active mb-15" href="{{  path('app_login') }}">Login</a>
+                        <a type="text"  class="text-warning stretched-link register d-flex justify-content-end " href="{{  path('CreateAccount') }}">register</a>
 
                     {% endif %}
-                    {% if app.user %}
-                            <div class="mb-3">
-                                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-                            </div>
-                    {% endif %}
+
                 </div>
                 <!-- Cart Menu -->
                 <div class="cart-fav-search mb-100">
-                    <a href="#" class="cart-nav"><img src="{{ asset('img/core-img/cart.png') }}" alt="cart"> Cart <span>(0)</span></a>
-                    <a href="#" class="fav-nav"><img src="{{ asset('img/core-img/favorites.png') }}" alt="favorites"> Favourite</a>
-                    <a href="#" class="search-nav"><img src="{{ asset('img/core-img/search.png') }}" alt="search"> Search</a>
+                    {% if app.user %}
+                    <a href="#" class="acount-nav"><i class="fa fa-user"> </i> {{ app.user.username }} </a>
+                    {% endif %}
+                    <a href="#" class="fav-nav"><i class="fa fa-star"></i> Favourite</a>
+                    <a href="#" class="search-nav"><i class="fa fa-search"></i> Search</a>
                 </div>
                 <!-- Social Button -->
                 <div class="social-info d-flex justify-content-between">
-                    <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a href="https://www.pinterest.fr/"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://fr-fr.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/home"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                 </div>
             </header>
             <!-- Header Area End -->
@@ -202,54 +199,7 @@
             </div>
         </footer>
         {% endblock %}
-        {% block Modal %}
-            <!-- Modal -->
-            <div id="loginModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body" >
-                            <form method="post">
-
-
-                                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                                <label for="inputUsername" class="sr-only">Username</label>
-                                <input type="text"  name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-                                <label for="inputPassword" class="sr-only">Password</label>
-                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
-                                <input type="hidden" name="_csrf_token"
-                                       value="{{ csrf_token('authenticate') }}"
-                                >
-
-                                {#
-                                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                                    See https://symfony.com/doc/current/security/remember_me.html
-
-                                    <div class="checkbox mb-3">
-                                        <label>
-                                            <input type="checkbox" name="_remember_me"> Remember me
-                                        </label>
-                                    </div>
-                                #}
-
-                                <button class="btn btn-lg btn-primary" type="submit">
-                                    Sign in
-                                </button>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-lg btn-primary" form="form-connect"  type="submit" id="closeLogin">Sign in</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        {% endblock %}
 
         {% block javascripts %}
             <!-- ##### jQuery ##### -->

@@ -12,6 +12,11 @@ class ProductController extends AbstractController
      * @Route("/",name="index")
      **/
     public function index() {
+        $securityContext = $this->container->get('security.authorization_checker');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_ANONYMOUSLY ')) {
+            dd("connecetd");
+        }
+
         return $this->render('index.html.twig', []);
     }
 

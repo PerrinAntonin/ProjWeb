@@ -17,6 +17,8 @@ class LoginController extends AbstractController
 {
     /**
      * @Route("/login", name="app_login")
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -42,9 +44,9 @@ class LoginController extends AbstractController
         throw new \Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
     }
     /**
-     * @Route("/create", name="CreateAccount")
+     * @Route("/register", name="CreateAccount")
      */
-    public function create(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
+    public function register(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {
         $form = $this->createForm(CreateAccountFormType::class);
 
