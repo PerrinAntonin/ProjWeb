@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -12,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+use Symfony\Component\Validator\Constraints\File;
 
 class CreateAccountFormType extends AbstractType
 {
@@ -60,7 +63,12 @@ class CreateAccountFormType extends AbstractType
                 'attr' =>['class'=> 'form-control w-100',"placeholder"=>"Leave a description about you", "cols"=>"30", "rows"=>"10"],
                 'label' => false,
                 'required' => false,])
-        ;
+            ->add('profilimage',FileType::class,[
+                'attr' =>['class'=> 'form-control'],
+                'help' => 'select a image',
+                'label' => false,
+                'mapped' => false,
+                'required' => false,]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

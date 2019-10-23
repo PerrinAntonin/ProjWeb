@@ -31,9 +31,12 @@
                                     {{ form_widget(form.username) }}
                                 </div>
                                 <div class="col-md-6 mb-3">
+                                    {{ form_widget(form.profilimage) }}
+                                </div>
+                                <div class="col-md-6 mb-3">
                                     {{ form_widget(form.lastname) }}
                                 </div>
-                                <div class="col-12 mb-3">
+                                <div class="col-6 mb-3">
                                     {{ form_widget(form.firstname) }}
                                 </div>
                                 <div class="col-6 mb-3">
@@ -53,7 +56,7 @@
                                 </div>
 
                             </div>
-                            {{ form_rest(form) }}
+
                             {{ form_end(form) }}
                         </form>
                     </div>
