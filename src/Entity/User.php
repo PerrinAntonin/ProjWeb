@@ -89,6 +89,11 @@ class User implements UserInterface
      */
     private $favorites;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $profilimage;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -311,6 +316,18 @@ class User implements UserInterface
                 $favorite->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProfilimage(): ?string
+    {
+        return $this->profilimage;
+    }
+
+    public function setProfilimage(?string $profilimage): self
+    {
+        $this->profilimage = $profilimage;
 
         return $this;
     }
