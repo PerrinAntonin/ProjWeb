@@ -320,12 +320,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getProfilimage(): ?string
+    public function getProfilimage()
     {
         return $this->profilimage;
     }
 
-    public function setProfilimage(?string $profilimage): self
+    public function setProfilimage( $profilimage)
     {
         $this->profilimage = $profilimage;
 

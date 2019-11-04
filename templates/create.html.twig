@@ -9,7 +9,7 @@
                     <div class="checkout_details_area clearfix">
 
                         <form  method="post" id="form-id">
-                            {{ form_start(form) }}
+                            {{form_start(form)}}
                             <div class="my-custom-class-for-errors">
                                 {{ form_errors(form) }}
                             </div>
@@ -30,9 +30,10 @@
                                 <div class="col-md-6 mb-3">
                                     {{ form_widget(form.username) }}
                                 </div>
+                                <!--
                                 <div class="col-md-6 mb-3">
                                     {{ form_widget(form.profilimage) }}
-                                </div>
+                                </div>-->
                                 <div class="col-md-6 mb-3">
                                     {{ form_widget(form.lastname) }}
                                 </div>
@@ -56,7 +57,7 @@
                                 </div>
 
                             </div>
-
+                            {{form_rest(form)}}
                             {{ form_end(form) }}
                         </form>
                     </div>

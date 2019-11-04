@@ -1,4 +1,4 @@
 framework:
     router:
-        strict_requirements: null
+        #A Tester strict_requirements: null
         utf8: true

@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class LoginController extends AbstractController
 {
@@ -47,27 +49,30 @@ class LoginController extends AbstractController
      */
     public function register(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {
-        $form = $this->createForm(CreateAccountFormType::class);
+        $user = new User();
+        $form = $this->createForm(CreateAccountFormType::class,$user);
 
         $form->handleRequest($request); // On récupère le formulaire envoyé dans la requête
 
-
+        dd($form);
         if ($form->isSubmitted() && $form->isValid()) { // on véfifie si le formulaire est envoyé et si il est valide
+
+            /** @var User $imageFile */
+            //$imageFile = $request->request->all();
 
             $article = $form->getData(); // On récupère l'article associé
             $encoded = $encoder->encodePassword($article, $article->getPassword());
-            $file = $article->getProfilimage();
-            dd($article);
-            if ($file) {
-                dd("c'est bon");
-                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+
+            /**if ($imageFile) {
+
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
                 $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
 
                 // Move the file to the directory where brochures are stored
                 try {
-                    $file->move(
+                    $imageFile->move(
                         $this->getParameter('upload_directory'),
                         $newFilename
                     );
@@ -78,7 +83,7 @@ class LoginController extends AbstractController
                 // updates the 'brochureFilename' property to store the PDF file name
                 // instead of its contents
                 $article->setBrochureFilename($newFilename);
-            }
+            }*/
 
             $article->setPassword($encoded);
             $article->setCreationdate(New \DateTime());
