@@ -54,7 +54,7 @@ class LoginController extends AbstractController
 
         $form->handleRequest($request); // On récupère le formulaire envoyé dans la requête
 
-        dd($form);
+
         if ($form->isSubmitted() && $form->isValid()) { // on véfifie si le formulaire est envoyé et si il est valide
 
             /** @var User $imageFile */

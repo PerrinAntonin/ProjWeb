@@ -69,7 +69,7 @@ class CreateAccountFormType extends AbstractType
                 'help' => 'select a image',
                 'label' => false,
                 'mapped' => false,
-                'required' => true,])->add('submit',SubmitType::class);
+                'required' => true,]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
