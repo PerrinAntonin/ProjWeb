@@ -98,7 +98,4 @@ class LoginController extends AbstractController
         return $this->render('create.html.twig', ['form' => $form->createView()]); // on envoie ensuite le formulaire au template
 
     }
-
-
-
 }

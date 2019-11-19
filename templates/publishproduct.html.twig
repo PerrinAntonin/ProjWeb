@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block Content %}
+
+    <div class="cart-table-area section-padding-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <div class="checkout_details_area clearfix">
+
+                        <form  method="post" id="form-id">
+                            {{form_start(form)}}
+
+                            {{form_rest(form)}}
+                            {{ form_end(form) }}
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="cart-summary">
+                        <h5>Address</h5>
+                        <div class="cart-btn mt-10">
+                            <button form="form-id" type="submit" class="btn amado-btn w-100">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- ##### Main Content Wrapper End ##### -->
+
+
+{% endblock %}
