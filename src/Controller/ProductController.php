@@ -90,6 +90,9 @@ class ProductController extends AbstractController
 
             return $this->redirectToRoute('index'); // Hop redirigé et on sort du controller
         }
+        if( !$security->isGranted('IS_AUTHENTICATED_FULLY') ){
+            return $this->redirectToRoute('app_login');
+        }
         return $this->render('publishproduct.html.twig', ['form' => $form->createView()]); // on envoie ensuite le formulaire au template
 
     }
