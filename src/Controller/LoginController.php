@@ -98,4 +98,19 @@ class LoginController extends AbstractController
         return $this->render('create.html.twig', ['form' => $form->createView()]); // on envoie ensuite le formulaire au template
 
     }
+
+    /**
+     * @Route("/profile/{id}", name="UserInfo", methods={"GET"})
+     */
+    public function UserInfo(EntityManagerInterface $em, $id)
+    {
+        $repository = $em->getRepository(User::class);
+        $user = $repository->find($id);
+        if(!$user) {
+            throw $this->createNotFoundException('Sorry, there is no user with this id');
+        }
+        return $this->render('profile.html.twig', [
+            "user" => $user
+        ]);
+    }
 }
