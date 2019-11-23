@@ -571,7 +571,7 @@ img {
         -webkit-box-ordinal-group: 3;
         -ms-flex-order: 2;
         order: 2; } }
-  .main-content-wrapper .amado_product_area {
+  .main-content-wrapper .product_grid {
     position: relative;
     z-index: 1;
     -webkit-box-flex: 0;
@@ -580,21 +580,21 @@ img {
     width: calc(95% - 550px);
     max-width: calc(95% - 550px); }
     @media only screen and (min-width: 992px) and (max-width: 1199px) {
-      .main-content-wrapper .amado_product_area {
+      .main-content-wrapper .product_grid {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 calc(100% - 550px);
         flex: 0 0 calc(100% - 550px);
         width: calc(100% - 550px);
         max-width: calc(100% - 550px); } }
     @media only screen and (min-width: 768px) and (max-width: 991px) {
-      .main-content-wrapper .amado_product_area {
+      .main-content-wrapper .product_grid {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 calc(100% - 460px);
         flex: 0 0 calc(100% - 460px);
         width: calc(100% - 460px);
         max-width: calc(100% - 460px); } }
     @media only screen and (max-width: 767px) {
-      .main-content-wrapper .amado_product_area {
+      .main-content-wrapper .product_grid {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
@@ -1223,16 +1223,16 @@ img {
     font-size: 16px;
     text-transform: capitalize;
     color: #242424; }
-  .widget .catagories-menu li a {
+  .widget .catagories-menu div {
     text-transform: capitalize;
     font-size: 16px;
     padding: 15px 0 15px 20px;
     display: block;
     font-weight: 400;
     color: #959595; }
-    .widget .catagories-menu li a:hover, .widget .catagories-menu li a:focus {
+    .widget .catagories-menu div:hover, .widget .catagories-menu div:focus {
       color: #fbb710; }
-  .widget .catagories-menu li.active a {
+  .widget .catagories-menu div.active  {
     color: #fbb710; }
   .widget.price .slider-range-price {
     background-color: #c7d2d8 !important;

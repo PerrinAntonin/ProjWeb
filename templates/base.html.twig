@@ -79,7 +79,7 @@
                 <nav class="amado-nav">
                     <ul>
                         <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="{{  path('shop') }}">Shop</a></li>
                         <li><a href="cart.html">Cart</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
                     </ul>
@@ -204,17 +204,21 @@
 
         {% block javascripts %}
             <!-- ##### jQuery ##### -->
-            <script src="{{ asset('js/jquery/jquery-2.2.4.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/jquery/jquery-2.2.4.min.js') }}"></script>
             <!-- Popper js -->
-            <script src="{{ asset('js/popper.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
             <!-- Bootstrap js -->
-            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
             <!-- Plugins js -->
-            <script src="{{ asset('js/plugins.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
             <!-- Active js -->
-            <script src="{{ asset('js/active.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/active.js') }}"></script>
             <!-- login js  -->
-            <script src="{{ asset('js/login.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/login.js') }}"></script>
+            <!-- isotope js -->
+            <script type="text/javascript" src={{ asset('js/categories.js') }}></script>
+            <script type="text/javascript" src="https://unpkg.com/isotope-layout@2/dist/isotope.pkgd.min.js"></script>
+
         {% endblock %}
 
     </body>

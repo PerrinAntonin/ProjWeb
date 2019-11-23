@@ -28,6 +28,18 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @Route("/shop",name="shop")
+     **/
+    public function categories() {
+        $securityContext = $this->container->get('security.authorization_checker');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_ANONYMOUSLY ')) {
+            dd("connecetd");
+        }
+
+        return $this->render('categories.html.twig', []);
+    }
+
+    /**
      * @Route("/product/{productId}",name="productDetails")
      **/
     public function productDetails() {

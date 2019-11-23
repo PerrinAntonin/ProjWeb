@@ -664,7 +664,7 @@ img {
             order: 2;
         }
     }
-    .amado_product_area {
+    .product_grid {
         position: relative;
         z-index: 1;
         @include flex(0 0 calc(95% - 550px));
