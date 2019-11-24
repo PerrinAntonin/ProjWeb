@@ -81,7 +81,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/publishproduct", name="publishproduct")
      */
-    public function register(Request $request, EntityManagerInterface $em, Security $security)
+    public function CreateProduct(Request $request, EntityManagerInterface $em, Security $security)
     {
         $product = new Product();
         $form = $this->createForm(CreateProductFormType::class,$product);
@@ -91,11 +91,19 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) { // on véfifie si le formulaire est envoyé et si il est valide
 
+          
 
             $article = $form->getData(); // On récupère l'article associé
 
             $article->setUserId($security->getUser());
             $article->setPublishdate(New \DateTime());
+
+
+            $file = $article->getFileName();
+            dd($article);
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move($this->getParameter('upload_directory'),$filename);
+            $article->setFileName($filename);
 
             $em->persist($article); // on le persiste
             $em->flush(); // on save

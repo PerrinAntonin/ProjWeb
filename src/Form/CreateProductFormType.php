@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Product;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -15,6 +16,8 @@ class CreateProductFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('FileName',FileType::class,['label'=>"Choisir Image"])
+
             ->add('name', TextType::class,[
                 'attr'=> ['class'=> 'form-control',"placeholder"=>"Veuillez donner un titre précis de l'annonce."],
                 'label' => false,
@@ -27,8 +30,10 @@ class CreateProductFormType extends AbstractType
             ->add('price',IntegerType::class,[
                 'attr'=> ['class'=> 'form-control',"placeholder"=>"Choisissez un prix réaliste."],
                 'label' => false,
-                'required' => false,] );
+                'required' => false,]);
+          
     }
+
 
     public function configureOptions(OptionsResolver $resolver)
     {

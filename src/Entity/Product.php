@@ -49,6 +49,11 @@ class Product
      */
     private $favorites;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $FileName;
+
     public function __construct()
     {
         $this->favorites = new ArrayCollection();
@@ -146,6 +151,18 @@ class Product
                 $favorite->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFileName()
+    {
+        return $this->FileName;
+    }
+
+    public function setFileName(?string $FileName): self
+    {
+        $this->FileName = $FileName;
 
         return $this;
     }
