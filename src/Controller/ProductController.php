@@ -38,13 +38,20 @@ class ProductController extends AbstractController
     /**
      * @Route("/shop",name="shop")
      **/
-    public function categories() {
+    public function categories(EntityManagerInterface $em) {
         $securityContext = $this->container->get('security.authorization_checker');
         if ($securityContext->isGranted('IS_AUTHENTICATED_ANONYMOUSLY ')) {
             dd("connecetd");
         }
+        $repository = $em->getRepository(Product::class);
+        $products = $repository->findAll();
 
-        return $this->render('categories.html.twig', []);
+        if(!$products) {
+            throw $this->createNotFoundException('Sorry, there is no product');
+        }
+        return $this->render('categories.html.twig', [
+            "products" => $products
+        ]);
     }
 
     /**
@@ -135,6 +142,5 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         return $this->render('publishproduct.html.twig', ['form' => $form->createView()]); // on envoie ensuite le formulaire au template
-
     }
 }
