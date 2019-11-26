@@ -16,7 +16,7 @@ class CreateProductFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('FileName',FileType::class,['label'=>"Choisir Image"])
+            //->add('FileName',FileType::class,['label'=>"Choisir Image"])
 
             ->add('name', TextType::class,[
                 'attr'=> ['class'=> 'form-control',"placeholder"=>"Veuillez donner un titre précis de l'annonce."],

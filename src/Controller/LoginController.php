@@ -100,7 +100,7 @@ class LoginController extends AbstractController
     }
 
     /**
-     * @Route("/profile/{id}", name="UserInfo", methods={"GET"})
+     * @Route("/profile/{id}", name="profile", methods={"GET"})
      */
     public function UserInfo(EntityManagerInterface $em, $id)
     {

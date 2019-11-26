@@ -56,7 +56,7 @@
             <div class="mobile-nav">
                 <!-- Navbar Brand -->
                 <div class="amado-navbar-brand">
-                    <a href="index.html"><img src="{{ asset('img/core-img/logosanstexte.png') }}" alt="logo"></a>
+                    <a href="{{  path('index') }}"><img src="{{ asset('img/core-img/logoname.png') }}" alt="logo"></a>
                 </div>
                 <!-- Navbar Toggler -->
                 <div class="amado-navbar-toggler">
@@ -72,13 +72,13 @@
                 </div>
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="index.html"><img src="{{ asset('img/core-img/logoname.png') }}" alt="logo"></a>
+                    <a href="{{  path('index') }}"><img src="{{ asset('img/core-img/logoname.png') }}" alt="logo"></a>
 
                 </div>
                 <!-- Amado Nav -->
                 <nav class="amado-nav">
                     <ul>
-                        <li class="active"><a href="index.html">Home</a></li>
+                        <li class="active"><a href="{{  path('index') }}">Home</a></li>
                         <li><a href="{{  path('shop') }}">Shop</a></li>
                         <li><a href="cart.html">Cart</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
@@ -89,7 +89,6 @@
                     <a href="{{  path('publishproduct') }}" class="btn amado-btn mb-15">Déposer votre anonce</a>
                     <!-- Trigger the modal with a button -->
                     {% if not app.user %}
-
                         <a type="button" class="btn amado-btn active mb-15" href="{{  path('app_login') }}">Login</a>
                         <a type="text"  class="text-warning stretched-link register d-flex justify-content-end " href="{{  path('CreateAccount') }}">register</a>
 
@@ -99,7 +98,7 @@
                 <!-- Cart Menu -->
                 <div class="cart-fav-search mb-100">
                     {% if app.user %}
-                    <a href="#" class="acount-nav"><i class="fa fa-user"> </i> {{ app.user.username }} </a>
+                        <a href="{{ path('profile', {id: app.user.id }) }}" class="acount-nav"><i class="fa fa-user"> </i> {{ app.user.username }} </a>
                     {% endif %}
                     <a href="#" class="fav-nav"><i class="fa fa-star"></i> Favourite</a>
                     <a href="#" class="search-nav"><i class="fa fa-search"></i> Search</a>

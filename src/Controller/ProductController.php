@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 use App\Entity\Product;
+use App\Entity\User;
 
 use App\Form\CreateProductFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,13 +19,20 @@ class ProductController extends AbstractController
     /**
      * @Route("/",name="index")
      **/
-    public function index() {
+    public function index(EntityManagerInterface $em) {
         $securityContext = $this->container->get('security.authorization_checker');
         if ($securityContext->isGranted('IS_AUTHENTICATED_ANONYMOUSLY ')) {
             dd("connecetd");
         }
+        $repository = $em->getRepository(Product::class);
+        $products = $repository->findAll();
 
-        return $this->render('index.html.twig', []);
+        if(!$products) {
+            throw $this->createNotFoundException('Sorry, there is no product');
+        }
+        return $this->render('index.html.twig', [
+            "products" => $products
+        ]);
     }
 
     /**
@@ -42,8 +50,21 @@ class ProductController extends AbstractController
     /**
      * @Route("/product/{productId}",name="productDetails")
      **/
-    public function productDetails() {
-        return $this->render('productDetails.html.twig', []);
+    public function productDetails(EntityManagerInterface $em, $productId) {
+        $repository = $em->getRepository(Product::class);
+        $product = $repository->find($productId);
+
+        $repository = $em->getRepository(User::class);
+        $userid = $product->getUserId();
+        $user = $repository->find($userid);
+
+        if(!$product) {
+            throw $this->createNotFoundException('Sorry, there is no product with this id');
+        }
+        return $this->render('productDetails.html.twig', [
+            "product" => $product,
+            "user" => $user
+        ]);
     }
     /**
      * @Route("/maps/{ville}/{pays}",name="maps")
@@ -98,13 +119,13 @@ class ProductController extends AbstractController
             $article->setUserId($security->getUser());
             $article->setPublishdate(New \DateTime());
 
-
+            /*
             $file = $article->getFileName();
-            dd($article);
+            //dd($article);
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_directory'),$filename);
-            $article->setFileName($filename);
-
+            $article->setFileName($filename);*/
+            $article->setFileName("eztfgdzehn");
             $em->persist($article); // on le persiste
             $em->flush(); // on save
 

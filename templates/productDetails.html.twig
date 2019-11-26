@@ -12,7 +12,7 @@
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item"><a href="#">Furniture</a></li>
                             <li class="breadcrumb-item"><a href="#">Chairs</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">white modern chair</li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ product.getName() }}</li>
                         </ol>
                     </nav>
                 </div>
@@ -62,10 +62,8 @@
                         <!-- Product Meta Data -->
                         <div class="product-meta-data">
                             <div class="line"></div>
-                            <p class="product-price">$180</p>
-                            <a href="product-details.html">
-                                <h6>White Modern Chair</h6>
-                            </a>
+                            <p class="product-price">{{ product.getPrice() }} €</p>
+                            <h2>{{ product.getName() }}</h2>
                             <!-- Ratings & Review -->
                             <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
                                 <div class="ratings">
@@ -76,7 +74,7 @@
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                 </div>
                                 <div class="review">
-                                    <a href="#">Par TomPer</a>
+                                    <a href="{{ path('profile', {id: user.id }) }}">Par {{ user.getUsername() }}</a>
                                 </div>
                             </div>
                             <!-- Avaiable -->
@@ -84,7 +82,7 @@
                         </div>
 
                         <div class="short_overview my-5">
-                            <p>Ceci est une Description qui est très bien Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quae eveniet culpa officia quidem mollitia impedit iste asperiores nisi reprehenderit consequatur, autem, nostrum pariatur enim?</p>
+                            <p> {{ product.getDescription() }} </p>
                         </div>
 
                         <!-- Add to Cart Form -->
@@ -98,6 +96,7 @@
                                 </div>
                             </div>
                             <button type="submit" name="addtocart" value="5" class="btn amado-btn"><i class="fa fa-phone"></i> Voir le numéro</button>
+                            {{ user.getFirstName() }}
                         </form>
 
                     </div>
