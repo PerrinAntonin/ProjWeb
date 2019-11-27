@@ -6,6 +6,7 @@ use App\Entity\Product;
 use App\Entity\User;
 
 use App\Form\CreateProductFormType;
+use App\Form\SearchProductType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +14,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ProductController extends AbstractController
 {
@@ -142,5 +148,28 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         return $this->render('publishproduct.html.twig', ['form' => $form->createView()]); // on envoie ensuite le formulaire au template
+    }
+
+    /**
+     * @Route("/searchproduct", name="searchproduct")
+     */
+    public function SearchProduct(Request $request, EntityManagerInterface $em)
+    {
+        $form = $this->createForm(SearchProductType::class);
+
+        $form->handleRequest($request); // On récupère le formulaire envoyé dans la requête
+        //dd($form);
+        if ($form->isSubmitted() && $form->isValid()) { // on véfifie si le formulaire est envoyé et si il est valide
+            $repository = $em->getRepository(Product::class);
+            $article = $form->getData(); // On récupère l'article associé
+            $name = $article["recherche"];
+            $names = $repository->findByName($name);
+            if(!$names) {
+                throw $this->createNotFoundException('Sorry, there is no product with this name');
+            }
+            dd($names);
+            return $this->render('test.html.twig', ['form' => $form->createView(), 'name'=>$name]); // Hop redirigé et on sort du controller
+        }
+        return $this->render('test.html.twig', ['form' => $form->createView()]); // on envoie ensuite le formulaire au template
     }
 }
